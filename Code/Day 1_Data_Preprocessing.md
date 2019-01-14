@@ -37,7 +37,8 @@ X[ : , 0] = labelencoder_X.fit_transform(X[ : , 0])
 onehotencoder = OneHotEncoder(categorical_features = [0])
 X = onehotencoder.fit_transform(X).toarray()
 labelencoder_Y = LabelEncoder()
-Y =  labelencoder_Y.fit_transform(Y)
+# Y =  labelencoder_Y.fit_transform(Y) #这里会报错，因为数据类型的问题
+Y = labelencoder_Y.fit_transform(Y.astype(str)) #这个是正确的写法
 ```
 ## 第5步：拆分数据集为训练集合和测试集合
 ```python
